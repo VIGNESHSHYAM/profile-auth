@@ -48,6 +48,10 @@ app.use((0, cookie_session_1.default)({
     secure: false,
     httpOnly: true,
 }));
+// Health check endpoint
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'ok' });
+});
 app.use('/trpc', trpcExpress.createExpressMiddleware({
     router: router_1.appRouter,
     createContext,
