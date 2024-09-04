@@ -31,8 +31,7 @@ const cookie_session_1 = __importDefault(require("cookie-session"));
 const server_1 = require("@trpc/server");
 const trpcExpress = __importStar(require("@trpc/server/adapters/express"));
 const router_1 = require("./router");
-const db_1 = __importDefault(require("./db"));
-const cors_1 = __importDefault(require("cors"));
+const db_1 = __importDefault(require("./db")); // Import the DB connection
 const createContext = ({ req, res }) => ({
     req,
     res,
@@ -41,7 +40,6 @@ const createContext = ({ req, res }) => ({
 const t = server_1.initTRPC.context().create();
 const app = (0, express_1.default)();
 (0, db_1.default)();
-app.use((0, cors_1.default)());
 app.use((0, cookie_session_1.default)({
     name: 'session',
     secret: 'your-secret-key',
@@ -56,6 +54,6 @@ app.use('/trpc', trpcExpress.createExpressMiddleware({
     router: router_1.appRouter,
     createContext,
 }));
-app.listen(10000, () => {
+app.listen(4000, () => {
     console.log('Server is running on http://localhost:4000');
 });
