@@ -54,6 +54,6 @@ app.use('/trpc', trpcExpress.createExpressMiddleware({
     router: router_1.appRouter,
     createContext,
 }));
-app.listen(4000, () => {
+app.listen(10000, () => {
     console.log('Server is running on http://localhost:4000');
 });
